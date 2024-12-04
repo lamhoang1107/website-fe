@@ -1,0 +1,29 @@
+
+/*** Features Start ***/
+.feature {
+    background: var(--bs-light);
+  }
+  
+  .feature .feature-item {
+    display: flex;
+    border-radius: 10px;
+  }
+  
+  .feature .feature-item .feature-icon span {
+    width: 90px; 
+    height: 90px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--bs-secondary);
+    background: var(--bs-primary);
+    border-radius: 67% 33% 29% 71% / 39% 46% 54% 61%;;
+    animation-name: icon-animat;
+    animation-duration: 5s;
+    animation-delay: 1s;
+    animation-direction: alternate;
+    animation-iteration-count: infinite;
+    transition: 0.5s;
+  }
+  
+  /*** Features End ***/
