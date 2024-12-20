@@ -1,79 +1,113 @@
 
 import Link from "next/link";
-import { useEffect,useState } from 'react';
-import { useContext } from 'react';
+import { useContext,useState } from 'react';
 import { GlobalDataContext } from '@/context/GlobalDataContext';
 import { useRouter } from 'next/router';
+import _ from 'lodash';
+import { Icon } from "@iconify/react";
+
 
 export default function Header() {
     const { globalData } = useContext(GlobalDataContext);
-    console.log("🐈 ~ Header ~ globalData:", globalData?.page["home"])
+    let _data = globalData.component?.headers ?? {}
+    
     const router = useRouter();
+    const { slug } = router.query; // This will contain the dynamic part of the URL
+    console.log("🐈 ~ Header ~ slug:", slug)
 
-    // Access the current path
-    const currentPath = router.pathname;
-    console.log("🐈 ~ Header ~ currentPath:", currentPath)
+    const showComponent = v => {
+        let _component;
+        if (v.status == 1 || v.status == "1") {
+            switch (v.route) {
+                case "home":
+                case "about":
+                case "service":
+                case "blog":
+                case "contact":
+                    let link = `./${v.route == "home" ? "" :v.route }`
+                        // console.log("🐈 ~ showComponent ~ link:", link)
+                    // let page = v.route == "home" ? "" :v.route
+                    _component = <Link href={link} className={`nav-item nav-link ${slug?.[0] ? (slug[0] == v.route ? "active" : "") : (v.route == "home" ? "active" : "")}`} >
+                        <span >{v.name}</span>
+                    </Link>
+                    break;  
+            }
+        }
+        return _component
+    }
 
-    // Access dynamic route parameters or query string
-    const query = router.query; // Example: if route is /post/[id]
-    console.log("🐈 ~ Header ~ query:", query)
-
+    const [isToggled, setIsToggled] = useState(false);
+    const toggle = () => {
+        setIsToggled(prevState => !prevState);
+    };
     return (
         <>
             <>
             {/* Topbar Start */}
-            <div className="container-fluid topbar bg-secondary d-none d-xl-block w-100">
+            {(_data.topbar_status == 1 || _data.topbar_status == "1") && <div className="container-fluid topbar bg-secondary d-none d-xl-block w-100">
                 <div className="container">
                 <div className="row gx-0 align-items-center" style={{ height: 45 }}>
                     <div className="col-lg-6 text-center text-lg-start mb-lg-0">
                     <div className="d-flex flex-wrap">
-                        <a href="#" className="text-muted me-4">
-                        <i className="fas fa-map-marker-alt text-primary me-2" />
-                        Find A Location
+                        {_data.topbar_address !== "" && (
+                            <a href="#" className="text-muted me-4">
+                            <i className="fas fa-map-marker-alt text-primary me-2" />
+                            {_data.topbar_address}
+                            </a>
+                        )}
+                        {_data.topbar_phone !== "" && (
+                            <a href={`tel:${_data.topbar_phone}`} className="text-muted me-4">
+                            <i className="fas fa-phone-alt text-primary me-2" />
+                            {_data.topbar_phone}
+                            </a>
+                        )}
+                        {_data.topbar_email !== "" && (
+                            <a href={`mailto:${_data.topbar_email}`} className="text-muted me-0">
+                            <i className="fas fa-envelope text-primary me-2" />
+                            {_data.topbar_email}
                         </a>
-                        <a href="tel:+01234567890" className="text-muted me-4">
-                        <i className="fas fa-phone-alt text-primary me-2" />
-                        +01234567890
-                        </a>
-                        <a href="mailto:example@gmail.com" className="text-muted me-0">
-                        <i className="fas fa-envelope text-primary me-2" />
-                        Example@gmail.com
-                        </a>
+                        )}
                     </div>
                     </div>
                     <div className="col-lg-6 text-center text-lg-end">
                     <div className="d-flex align-items-center justify-content-end">
+                        {_data.topbar_facebook !== "" && (
                         <a
-                        href="#"
-                        className="btn btn-light btn-sm-square rounded-circle me-3"
+                            href={_data.topbar_facebook}
+                            className="btn btn-light btn-sm-square rounded-circle me-3"
                         >
-                        <i className="fab fa-facebook-f" />
+                            <i className="fab fa-facebook-f" />
                         </a>
+                        )}
+                        {_data.topbar_twitter !== "" && (
                         <a
-                        href="#"
-                        className="btn btn-light btn-sm-square rounded-circle me-3"
+                            href={_data.topbar_twitter}
+                            className="btn btn-light btn-sm-square rounded-circle me-3"
                         >
-                        <i className="fab fa-twitter" />
+                            <i className="fab fa-x-twitter" />
                         </a>
+                        )}
+                        {_data.topbar_instagram !== "" && (
                         <a
-                        href="#"
-                        className="btn btn-light btn-sm-square rounded-circle me-3"
+                            href={_data.topbar_instagram}
+                            className="btn btn-light btn-sm-square rounded-circle me-3"
                         >
-                        <i className="fab fa-instagram" />
+                            <i className="fab fa-instagram" />
                         </a>
+                        )}
+                        {_data.topbar_linkedin !== "" && (
                         <a
-                        href="#"
-                        className="btn btn-light btn-sm-square rounded-circle me-0"
+                            href={_data.topbar_linkedin}
+                            className="btn btn-light btn-sm-square rounded-circle me-0"
                         >
-                        <i className="fab fa-linkedin-in" />
+                            <i className="fab fa-linkedin-in" />
                         </a>
+                        )}
                     </div>
                     </div>
                 </div>
                 </div>
-            </div>
-            {/* <p>{page_data}</p> */}
-            {/* Topbar End */}
+            </div>}
             </>
 
             <div className="container-fluid nav-bar sticky-top px-0 px-lg-4 py-2 py-lg-0">
@@ -81,56 +115,28 @@ export default function Header() {
                     <div className="navbar navbar-expand-lg navbar-light">
                     <a href="" className="navbar-brand p-0">
                         <h1 className="display-6 text-primary">
-                        <i className="fas fa-car-alt me-3" />
-                        Cental
+                        {_data?.icon !== "" ? 
+                            (<Icon
+                                icon={_data?.icon}
+                                width="40"
+                                height="40"
+                                className="me-3"
+                            />):
+                            (
+                                <i className="fas fa-car-alt me-3" />
+                        )}
+                        {_data.title}
                         </h1>
-                        {/* <img src="img/logo.png" alt="Logo"> */}
                     </a>
-                        <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
-                            <span className="fa fa-bars"></span>
-                        </button>
-                        <div className="collapse navbar-collapse" id="navbarCollapse">
-                            <div className="navbar-nav mx-auto py-0">
-                                { globalData?.page["home"].status && <Link href="./" className={`nav-item nav-link ${globalData?.page["home"].route == currentPath ? "active": ""}`} >
-                                    <span >{globalData?.page["home"].name}</span>
-                                </Link> }
-                                { globalData?.page["about"].status && <Link href="./about" className={`nav-item nav-link ${globalData?.page["about"].route == currentPath ? "active": ""}`} >
-                                    <span >{globalData?.page["about"].name}</span>
-                                </Link> }
-                                <Link href="./service" className={`nav-item nav-link ${globalData?.page["service"].route == currentPath ? "active": ""}`} >
-                                    <span >{globalData?.page["service"].name}</span>
-                                </Link>
-                                <Link href="./blog" className={`nav-item nav-link ${globalData?.page["blog"].route == currentPath ? "active": ""}`} >
-                                    <span >{globalData?.page["blog"].name}</span>
-                                </Link>
-
-                                <div className="nav-item dropdown">
-                                    <div className="nav-link dropdown-toggle" data-bs-toggle="dropdown">{globalData?.page["pages"].name}</div>
-                                    <div className="dropdown-menu m-0">
-                                        <Link href="./feature" className="dropdown-item" >
-                                            <span>Our Feature</span>
-                                        </Link>
-                                        <Link href="./cars" className="dropdown-item" >
-                                            <span>Our Cars</span>
-                                        </Link>
-                                        <Link href="./team" className="dropdown-item" >
-                                            <span>Our Team</span>
-                                        </Link>
-                                        <Link href="./testimonial" className="dropdown-item" >
-                                            <span>Testimonial</span>
-                                        </Link>
-                                        <Link href="./404" className="dropdown-item" >
-                                            <span>404 Page</span>
-                                        </Link>
-                                    </div>
-                                </div>
-
-                                <Link href="./contact"  className={`nav-item nav-link ${globalData?.page["contact"].route == currentPath ? "active": ""}`}  >
-                                    <span>{globalData?.page["contact"].name}</span>
-                                </Link>
-                            </div>
-                            <a href="#" className="btn btn-primary rounded-pill py-2 px-4">Get Started</a>
+                    <button className="navbar-toggler" type="button" onClick={toggle} data-bs-toggle="collapse" data-bs-target="#navbarCollapse" data-toggle="collapse" data-target="#navbarCollapse">
+                        <span className="fa fa-bars"></span>
+                    </button>
+                    <div className={`collapse navbar-collapse ${isToggled == true ? "show" : ""}`} id="navbarCollapse">
+                        <div className="navbar-nav mx-auto py-0">
+                            {globalData?.page && globalData?.page.map((v) => {return showComponent(v)})}
                         </div>
+                        {(_data.btn_status == 1 || _data.btn_status == "1") && <a href="#header-carousel" className="btn btn-primary rounded-pill py-2 px-4">{_data.btn_title ?? "Get Started"}</a>}
+                    </div>
                     </div>
                 </div>
             </div>

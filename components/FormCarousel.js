@@ -5,7 +5,7 @@ export default function FormCarousel() {
         <>
             <>
                 {/* Carousel Start */}
-                <div className="header-carousel" >
+                <div className="header-carousel" id="header-carousel">
                     <Carousel  controls={false} interval={null}>
                         <Carousel.Item>
                             <img className="d-block w-100" src="/carousel-2.jpg" alt="First slide" />

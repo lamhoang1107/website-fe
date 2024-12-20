@@ -1,0 +1,52 @@
+.service {
+
+	.service-item-wraper {
+		border-radius: 10px;
+		transition: 0.5s;
+		height: 100%;
+
+		&:hover {
+			background: var(--bs-primary);
+		}
+
+		.service-item {
+			height: 100%;
+			position: relative;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: flex-start;
+			text-align: center;
+			box-shadow: 0 0 45px rgba(0, 0, 0, .1);
+			border-radius: 10px;
+			background: var(--bs-white);
+			transition: 0.5s;
+	
+			&:hover {
+				border-radius: 60px;
+				background: var(--bs-light);
+			}	
+	
+			.service-icon {
+				width: 90px;
+				height: 90px;
+				border-radius: 67% 33% 29% 71% / 39% 46% 54% 61%;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				color: var(--bs-secondary);
+				background: var(--bs-primary);
+				animation-name: icon-animat;
+				animation-duration: 5s;
+				animation-delay: 1s;
+				animation-direction: alternate;
+				animation-iteration-count: infinite;
+				transition: 0.5s;
+				svg {
+					width: auto;
+					height: 32px;    
+				}
+			}
+		}
+	}
+}

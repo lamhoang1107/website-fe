@@ -1,0 +1,35 @@
+.footer {
+	background: var(--bs-dark);
+	.footer-item {
+		a {
+			line-height: 35px;
+			color: var(--bs-body);
+			transition: 0.5s;
+			&:hover {
+				letter-spacing: 1px;
+				color: var(--bs-primary);
+			}
+		}
+		p {
+			line-height: 35px;
+		}
+		.footer-btn {
+			a {
+				transition: 0.5s;
+				i {
+					transition: 0.5s;
+				}
+				&:hover {
+					background: var(--bs-white);
+					i {
+						color: var(--bs-primary) !important;
+					}
+				}
+			}
+		}
+
+		.contact-item:last-of-type {
+			margin-bottom: 1rem;
+		}
+	}
+}

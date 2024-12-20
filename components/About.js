@@ -1,134 +1,137 @@
+import { useContext } from 'react';
+import { GlobalDataContext } from '@/context/GlobalDataContext';
+import { Icon } from "@iconify/react";
+
 
 export default function About() {
-    return (
-<>
-  {/* About Start */}
-  <div className="container-fluid overflow-hidden about py-5">
-    <div className="container py-5">
-      <div className="row g-5">
-        <div className="col-xl-6 wow fadeInLeft" data-wow-delay="0.2s">
-          <div className="about-item">
-            <div className="pb-5">
-              <h1 className="display-5 text-capitalize">
-                Cental <span className="text-primary">About</span>
-              </h1>
-              <p className="mb-0">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut
-                amet nemo expedita asperiores commodi accusantium at cum harum,
-                excepturi, quia tempora cupiditate! Adipisci facilis modi
-                quisquam quia distinctio,
-              </p>
+  const { globalData } = useContext(GlobalDataContext);
+  let _data = globalData.component?.abouts ?? {}
+  let list_items_1 = _data?.list_items_1 ? JSON.parse(_data?.list_items_1) : []
+  let list_items_2 = _data?.list_items_2 ? JSON.parse(_data?.list_items_2) : []
+
+  return (
+    <>
+      {/* About Start */}
+      <div className="container-fluid overflow-hidden about py-5" id="about">
+        <div className="container py-5">
+          <div className="row g-5">
+            <div className="col-xl-6 wow fadeInLeft" data-wow-delay="0.2s">
+              <div className="about-item">
+
+                {(_data?.title_part_1 !== "" || _data?.title_part_2 !== "" || _data?.description_1 !== "" ) && <div className="pb-5">
+
+                  {(_data?.title_part_1 !== "" || _data?.title_part_2 !== "") && <h1 className="display-5 text-capitalize">
+                    {_data?.title_part_1} <span className="text-primary">{_data?.title_part_2}</span>
+                  </h1>}
+
+                  {_data?.description_1 !== ""  && <p className="mb-0">
+                    {_data?.description_1}
+                  </p>}
+
+                </div>}
+
+                {list_items_1.length > 0 && (
+                    <div className="row g-4 d-flex flex-wrap">
+                      {list_items_1.map((v) => {
+                        return (
+                          <div className="col-lg-6 flex-grow-1">
+                            <div className="about-item-inner border p-4">
+                              <div className="about-icon mb-4">
+                                {v?.icon !== "" ?
+                                  (<Icon
+                                    icon={v?.icon}
+                                    width="45"
+                                    height="45"
+                                  />) :
+                                  (
+                                    <i className="fa fa-phone-alt fa-2x" />
+                                  )}
+                              </div>
+                              <h5 className="mb-3">{v?.title}</h5>
+                              <p className="mb-0">
+                                {v?.description}
+                              </p>
+                            </div>
+                          </div>
+                        )
+                      })}
+                    </div>
+                  )}
+
+                <p className="text-item my-4">
+                  {_data?.description_2}
+                </p>
+
+                <div className="row g-4">
+
+                  {(_data?.exp_status =="1" || _data?.exp_status == 1) && <div className="col-lg-6">
+                    <div className="exp-box text-center rounded bg-secondary p-4">
+                      <h1 className="display-6 text-white">{_data?.exp_num}</h1>
+                      <h5 className="text-light mb-0">{_data?.exp_text}</h5>
+                    </div>
+                  </div>}
+
+                  {list_items_2.length > 0 && (
+                    <div className={(_data?.exp_status =="1" || _data?.exp_status == 1) ? `col-lg-6` :  `col-lg-12`}>
+                      <div className="rounded">
+                        {list_items_2.map((v) => {
+                          return (
+                            <p className="mb-2">
+                              <i className="fa fa-check-circle text-primary me-1" />
+                              {v?.value}
+                            </p>
+                          )
+                        })}
+                      </div>
+                    </div>
+                  )}
+
+                  {/* <div className="col-lg-5 d-flex align-items-center">
+                    <a href="#about" className="btn btn-primary rounded py-3 px-5">
+                      More About Us
+                    </a>
+                  </div> */}
+
+                  {(_data?.person_status =="1" || _data?.person_status == 1) && <div className="col-lg-7">
+                    <div className="d-flex align-items-center">
+                      <img
+                        src={`${process.env.NEXT_PUBLIC_IMAGE_URL}${_data.person_image}`}
+                        className="img-fluid rounded-circle border border-4 border-secondary"
+                        style={{ width: 100, height: 100 }}
+                        alt="Image"
+                      />
+                      <div className="ms-4">
+                        <h4>{_data?.person_name}</h4>
+                        <p className="mb-0">{_data?.person_title}</p>
+                      </div>
+                    </div>
+                  </div>}
+                </div>
+              </div>
             </div>
-            <div className="row g-4">
-              <div className="col-lg-6">
-                <div className="about-item-inner border p-4">
-                  <div className="about-icon mb-4">
-                    <img
-                      src="about-icon-1.png"
-                      className="img-fluid w-50 h-50"
-                      alt="Icon"
-                    />
-                  </div>
-                  <h5 className="mb-3">Our Vision</h5>
-                  <p className="mb-0">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  </p>
-                </div>
-              </div>
-              <div className="col-lg-6">
-                <div className="about-item-inner border p-4">
-                  <div className="about-icon mb-4">
-                    <img
-                      src="about-icon-2.png"
-                      className="img-fluid h-50 w-50"
-                      alt="Icon"
-                    />
-                  </div>
-                  <h5 className="mb-3">Our Mision</h5>
-                  <p className="mb-0">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  </p>
-                </div>
-              </div>
-            </div>
-            <p className="text-item my-4">
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Beatae,
-              aliquam ipsum. Sed suscipit dolorem libero sequi aut natus debitis
-              reprehenderit facilis quaerat similique, est at in eum. Quo,
-              obcaecati in!
-            </p>
-            <div className="row g-4">
-              <div className="col-lg-6">
-                <div className="text-center rounded bg-secondary p-4">
-                  <h1 className="display-6 text-white">17</h1>
-                  <h5 className="text-light mb-0">Years Of Experience</h5>
-                </div>
-              </div>
-              <div className="col-lg-6">
-                <div className="rounded">
-                  <p className="mb-2">
-                    <i className="fa fa-check-circle text-primary me-1" /> Morbi
-                    tristique senectus
-                  </p>
-                  <p className="mb-2">
-                    <i className="fa fa-check-circle text-primary me-1" /> A
-                    scelerisque purus
-                  </p>
-                  <p className="mb-2">
-                    <i className="fa fa-check-circle text-primary me-1" />{" "}
-                    Dictumst vestibulum
-                  </p>
-                  <p className="mb-0">
-                    <i className="fa fa-check-circle text-primary me-1" /> dio
-                    aenean sed adipiscing
-                  </p>
-                </div>
-              </div>
-              <div className="col-lg-5 d-flex align-items-center">
-                <a href="#" className="btn btn-primary rounded py-3 px-5">
-                  More About Us
-                </a>
-              </div>
-              <div className="col-lg-7">
-                <div className="d-flex align-items-center">
+            <div className="col-xl-6 wow fadeInRight" data-wow-delay="0.2s">
+              <div className="about-img">
+                <div className="img-1">
                   <img
-                    src="attachment-img.jpg"
-                    className="img-fluid rounded-circle border border-4 border-secondary"
-                    style={{ width: 100, height: 100 }}
-                    alt="Image"
+                    src={`${process.env.NEXT_PUBLIC_IMAGE_URL}${_data.image_1}`}
+                    className="img-fluid rounded h-100 w-100"
+                    alt="image_1"
                   />
-                  <div className="ms-4">
-                    <h4>William Burgess</h4>
-                    <p className="mb-0">Carveo Founder</p>
-                  </div>
+                </div>
+                <div className="img-2">
+                  <img
+                    src={`${process.env.NEXT_PUBLIC_IMAGE_URL}${_data.image_2}`}
+                    className="img-fluid rounded w-100"
+                    alt="image_2"
+                  />
                 </div>
               </div>
-            </div>
-          </div>
-        </div>
-        <div className="col-xl-6 wow fadeInRight" data-wow-delay="0.2s">
-          <div className="about-img">
-            <div className="img-1">
-              <img
-                src="about-img.jpg"
-                className="img-fluid rounded h-100 w-100"
-                alt=""
-              />
-            </div>
-            <div className="img-2">
-              <img
-                src="about-img-1.jpg"
-                className="img-fluid rounded w-100"
-                alt=""
-              />
             </div>
           </div>
         </div>
       </div>
-    </div>
-  </div>
-  {/* About End */}
-</>
+      {/* About End */}
+    </>
 
-    )
+  )
 }
