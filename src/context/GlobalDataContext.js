@@ -27,12 +27,14 @@ export function GlobalDataProvider({ children }) {
 
   // Fetch data function
   const fetchData = async () => {
-    const page_response = await fetch('http://localhost:8888/v1/pages').then(results => results.json());
-    const component_response = await fetch('http://localhost:8888/v1/components').then(results => results.json());
+    const page_response = await fetch(process.env.NEXT_PUBLIC_API_URL + '/pages').then(results => results.json());
+    const component_response = await fetch(process.env.NEXT_PUBLIC_API_URL + '/components').then(results => results.json());
+    const review_response = await fetch(process.env.NEXT_PUBLIC_API_URL + '/reviews').then(results => results.json());
     
     let data = {
       page: page_response.items,
       component: component_response.result,
+      review: review_response.items
     }
     console.log("🐈 ~ fetchData ~ data:", data)
     setGlobalData(data);

@@ -13,9 +13,8 @@ export default function Header() {
     
     const router = useRouter();
     const { slug } = router.query; // This will contain the dynamic part of the URL
-    console.log("🐈 ~ Header ~ slug:", slug)
 
-    const showComponent = v => {
+    const showComponent = (v,i) => {
         let _component;
         if (v.status == 1 || v.status == "1") {
             switch (v.route) {
@@ -25,9 +24,7 @@ export default function Header() {
                 case "blog":
                 case "contact":
                     let link = `./${v.route == "home" ? "" :v.route }`
-                        // console.log("🐈 ~ showComponent ~ link:", link)
-                    // let page = v.route == "home" ? "" :v.route
-                    _component = <Link href={link} className={`nav-item nav-link ${slug?.[0] ? (slug[0] == v.route ? "active" : "") : (v.route == "home" ? "active" : "")}`} >
+                    _component = <Link key={i} href={link} className={`nav-item nav-link ${slug?.[0] ? (slug[0] == v.route ? "active" : "") : (v.route == "home" ? "active" : "")}`} >
                         <span >{v.name}</span>
                     </Link>
                     break;  
@@ -133,7 +130,7 @@ export default function Header() {
                     </button>
                     <div className={`collapse navbar-collapse ${isToggled == true ? "show" : ""}`} id="navbarCollapse">
                         <div className="navbar-nav mx-auto py-0">
-                            {globalData?.page && globalData?.page.map((v) => {return showComponent(v)})}
+                            {globalData?.page && globalData?.page.map((v,i) => {return showComponent(v,i)})}
                         </div>
                         {(_data.btn_status == 1 || _data.btn_status == "1") && <a href="#header-carousel" className="btn btn-primary rounded-pill py-2 px-4">{_data.btn_title ?? "Get Started"}</a>}
                     </div>

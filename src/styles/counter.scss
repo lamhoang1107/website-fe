@@ -1,0 +1,25 @@
+
+.counter {
+	.counter-item {
+		.counter-item-icon {
+			width: 90px;
+			height: 90px;
+			border-radius: 67% 33% 29% 71% / 39% 46% 54% 61%;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			color: var(--bs-secondary);
+			background: var(--bs-primary);
+			animation-name: icon-animat;
+			animation-duration: 5s;
+			animation-delay: 1s;
+			animation-direction: alternate;
+			animation-iteration-count: infinite;
+			transition: 0.5s;
+            svg {
+                height: 32px;
+                width: auto;
+            }
+		}
+	}
+}

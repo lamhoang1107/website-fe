@@ -17,7 +17,7 @@ import "@/styles/feature.scss";
 import "@/styles/about.scss";
 import "@/styles/counter.scss";
 import "@/styles/service.scss";
-import "@/styles/testimonial.scss";
+import "@/styles/review.scss";
 
 
 export default function App({ Component, pageProps }) {
