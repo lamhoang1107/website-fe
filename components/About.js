@@ -98,6 +98,7 @@ export default function About() {
                         className="img-fluid rounded-circle border border-4 border-secondary"
                         style={{ width: 100, height: 100 }}
                         alt="Image"
+                        crossOrigin="anonymous"
                       />
                       <div className="ms-4">
                         <h4>{_data?.person_name}</h4>
@@ -115,6 +116,7 @@ export default function About() {
                     src={`${process.env.NEXT_PUBLIC_IMAGE_URL}${_data.image_1}`}
                     className="img-fluid rounded h-100 w-100"
                     alt="image_1"
+                    crossOrigin="anonymous"
                   />
                 </div>
                 <div className="img-2">
@@ -122,6 +124,7 @@ export default function About() {
                     src={`${process.env.NEXT_PUBLIC_IMAGE_URL}${_data.image_2}`}
                     className="img-fluid rounded w-100"
                     alt="image_2"
+                    crossOrigin="anonymous"
                   />
                 </div>
               </div>

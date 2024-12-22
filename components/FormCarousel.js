@@ -11,7 +11,8 @@ export default function FormCarousel() {
                             <img 
                                 className="d-block w-100" 
                                 src="public/carousel-2.jpg" 
-                                alt="First slide"  
+                                alt="First slide"
+                                crossOrigin="anonymous"  
                             />
                             <div className="carousel-caption">
                                 <div className="container py-4">
@@ -151,6 +152,7 @@ export default function FormCarousel() {
                                 src="public/carousel-2.jpg"
                                 className="img-fluid w-100"
                                 alt="First slide"
+                                crossOrigin="anonymous"
                             />
                             <div className="carousel-caption">
                                 <div className="container py-4">

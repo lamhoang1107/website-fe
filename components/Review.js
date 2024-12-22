@@ -69,6 +69,7 @@ export default function Review() {
                                             src={v?.image ? `${process.env.NEXT_PUBLIC_IMAGE_URL}${v.image}` : "/avartar.png"} 
                                             className="img-fluid" 
                                             alt="" 
+                                            crossOrigin="anonymous"
                                         />
                                         <div className="ms-4">
                                             <h4>{v?.name}</h4>
