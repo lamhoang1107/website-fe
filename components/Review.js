@@ -65,7 +65,11 @@ export default function Review() {
                                         <i className="fa fa-quote-right fa-2x" />
                                     </div>
                                     <div className="testimonial-inner p-4">
-                                        <img src={v?.image ? `${process.env.NEXT_PUBLIC_IMAGE_URL}${v.image}` : "/avartar.png"} className="img-fluid" alt="" />
+                                        <img 
+                                            src={v?.image ? `${process.env.NEXT_PUBLIC_IMAGE_URL}${v.image}` : "/avartar.png"} 
+                                            className="img-fluid" 
+                                            alt="" 
+                                        />
                                         <div className="ms-4">
                                             <h4>{v?.name}</h4>
                                             <p>{v?.title}</p>

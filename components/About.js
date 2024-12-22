@@ -2,7 +2,6 @@ import { useContext } from 'react';
 import { GlobalDataContext } from '@/context/GlobalDataContext';
 import { Icon } from "@iconify/react";
 
-
 export default function About() {
   const { globalData } = useContext(GlobalDataContext);
   let _data = globalData.component?.abouts ?? {}
