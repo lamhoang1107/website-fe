@@ -6,7 +6,7 @@ const nextConfig = {
     silenceDeprecations: ["legacy-js-api"],
   },
   images: {
-    domains: ['localhost'],
+    domains: ['localhost','api.demo.smarttechco.vn/'],
   },
   rules: {
     "@next/next/no-img-element": "off",
