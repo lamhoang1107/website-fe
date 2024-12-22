@@ -1,11 +1,12 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
+  distDir: '_next', 
   sassOptions: {
     silenceDeprecations: ["legacy-js-api"],
   },
   images: {
-    domains: ['localhost'],
+    domains: ['localhost','api.demo.smarttechco.vn/'],
   },
   rules: {
     "@next/next/no-img-element": "off",

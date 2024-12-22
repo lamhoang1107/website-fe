@@ -66,6 +66,7 @@ export default function Feature() {
                                 className="img-fluid w-100"
                                 style={{ objectFit: "cover" }}
                                 alt="Img"
+                                crossOrigin="anonymous"
                             />
                         </div>
                         <div className="col-xl-4">
