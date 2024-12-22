@@ -13,39 +13,39 @@ import Feature from "../../components/Feature";
 import About from "../../components/About";
 import Counter from "../../components/Counter";
 import Service from "../../components/Service";
-import Testimonial from "../../components/Testimonial";
+import Review from "../../components/Review";
 
 
 
 export default function CatchAllPage() {
   const router = useRouter();
   const { slug } = router.query;
-  console.log("🐈 ~ CatchAllPage ~ router.query:")
 
   const { globalData } = useContext(GlobalDataContext);
-  console.log("🐈 ~ CatchAllPage ~ globalData:", globalData)
   let _findIndex = _.findIndex(globalData?.page, { route: (slug && slug[0] !== "") ? slug[0] : "home" });
   
-  const showComponent = v => {
+  const showComponent = (v,i) => {
     let _component;
     if (v.status == 1 || v.status == "1")
     switch (v.id) {
       case "banner_form" :
-        _component = <Carousel/>
+        _component = <Carousel key={i}/>
         break;
       case "feature" :
-        _component = <Feature/>
+        _component = <Feature key={i}/>
         break;
       case "about" :
-        _component = <About/>
+        _component = <About key={i}/>
         break;
       case "counter" :
-        _component = <Counter/>
+        _component = <Counter key={i}/>
         break;
       case "service" :
-        _component = <Service/>
+        _component = <Service key={i}/>
         break;
-      
+      case "review" :
+        _component = <Review key={i}/>
+        break;
     }
     return _component
   
@@ -54,7 +54,7 @@ export default function CatchAllPage() {
     globalData?.page ? 
     <>
       <Header/>
-      {globalData?.page?.[_findIndex]?.items && globalData?.page[_findIndex].items.map((v) => {return showComponent(v)})}      
+      {globalData?.page?.[_findIndex]?.items && globalData?.page[_findIndex].items.map((v,i) => {return showComponent(v,i)})}      
       <Footer/>
     </> : 
     <Loading/>

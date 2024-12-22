@@ -10,11 +10,10 @@ import { Icon } from "@iconify/react";
 export default function Footer() {
     const { globalData } = useContext(GlobalDataContext);
     let _data = globalData.component?.footers ?? {}
-    console.log("🐈 ~ Footer ~ _data:", _data)
     let hours_items = _data?.hours_items ? JSON.parse(_data?.hours_items) : []
 
 
-    const showComponent = v => {
+    const showComponent = (v,i) => {
         let _component;
         if (v.status == 1 || v.status == "1") {
             switch (v.route) {
@@ -25,7 +24,7 @@ export default function Footer() {
                 case "contact":
                     let link = `./${v.route == "home" ? "" : v.route}`
                     _component = (
-                        <a href={link}>
+                        <a href={link} key={i}>
                             <i className="fas fa-angle-right me-2" /> {v.name}
                         </a>
                     )
@@ -71,15 +70,15 @@ export default function Footer() {
                         {(_data?.link_status == 1 || _data?.link_status == "1") && <div className="col-md-6 col-lg-6 col-xl-3 flex-grow-1">
                             <div className="footer-item d-flex flex-column">
                                 <h4 className="text-white mb-4">{_data?.title_links}</h4>
-                                {globalData?.page && globalData?.page.map((v) => {return showComponent(v)})}
+                                {globalData?.page && globalData?.page.map((v,i) => {return showComponent(v,i)})}
                             </div>
                         </div>}
                         {(_data?.hours_status == 1 || _data?.hours_status == "1") && <div className="col-md-6 col-lg-6 col-xl-3 flex-grow-1">
                             <div className="footer-item d-flex flex-column">
                                 <h4 className="text-white mb-4">{_data?.title_hours}</h4>
-                                {hours_items?.length > 0 && hours_items.map((v) => {
+                                {hours_items?.length > 0 && hours_items.map((v,i) => {
                                     return (
-                                        <div className="mb-3">
+                                        <div className="mb-3" key={i}>
                                             <h6 className="text-muted mb-0">{v?.top}</h6>
                                             <p className="text-white mb-0">{v?.bottom}</p>
                                         </div>
@@ -90,13 +89,13 @@ export default function Footer() {
                         {(_data.contact_status == 1 || _data.contact_status == "1") && <div className="col-md-6 col-lg-6 col-xl-3 flex-grow-1">
                             <div className="footer-item d-flex flex-column">
                                 <h4 className="text-white mb-4">{_data.contact_title}</h4>
-                                {_data?.contact_address && <a href={_data?.contact_address_link} target="_blank" class="contact-item">
+                                {_data?.contact_address && <a href={_data?.contact_address_link} target="_blank" className="contact-item">
                                     <i className="fa fa-map-marker-alt me-2" /> {_data.contact_address}
                                 </a>}
-                                {_data?.contact_email && <a href={"mailto:"+_data?.contact_email} class="contact-item">
+                                {_data?.contact_email && <a href={"mailto:"+_data?.contact_email} className="contact-item">
                                     <i className="fas fa-envelope me-2" /> {_data?.contact_email}
                                 </a>}
-                                {_data?.contact_phone && <a href={"tel:"+ _data?.contact_phone} class="contact-item">
+                                {_data?.contact_phone && <a href={"tel:"+ _data?.contact_phone} className="contact-item">
                                     <i className="fas fa-phone me-2" /> {_data?.contact_phone}
                                 </a>}
                                 <div className="d-flex">

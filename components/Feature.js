@@ -32,8 +32,8 @@ export default function Feature() {
                     <div className="row g-4 align-items-center">
                         <div className="col-xl-4">
                             <div className="row gy-4 gx-0">
-                                {firstHalf.length > 0 && firstHalf.map((v) => {
-                                    return (<div className="col-12 animated fadeInUp" data-animation="fadeInUp" data-delay="0.1s" style={{ animationDelay: "0.3s" }}>
+                                {firstHalf.length > 0 && firstHalf.map((v,i) => {
+                                    return (<div key={i} className="col-12 animated fadeInUp" data-animation="fadeInUp" data-delay="0.1s" style={{ animationDelay: "0.3s" }}>
                                         <div className="feature-item">
                                             <div className="feature-icon">
                                                 <span>
@@ -70,8 +70,8 @@ export default function Feature() {
                         </div>
                         <div className="col-xl-4">
                             <div className="row gy-4 gx-0">
-                                {secondHalf.length > 0 && secondHalf.map((v) => {
-                                    return (<div className="col-12 animated fadeInUp" data-animation="fadeInUp" data-delay="0.1s" style={{ animationDelay: "0.3s" }}>
+                                {secondHalf.length > 0 && secondHalf.map((v,i) => {
+                                    return (<div key={i} className="col-12 animated fadeInUp" data-animation="fadeInUp" data-delay="0.1s" style={{ animationDelay: "0.3s" }}>
                                         <div className="feature-item justify-content-end">
                                             <div className="text-end me-4">
                                                 <h5 className="mb-3">{v?.title}</h5>

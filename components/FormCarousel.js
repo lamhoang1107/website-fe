@@ -8,7 +8,11 @@ export default function FormCarousel() {
                 <div className="header-carousel" id="header-carousel">
                     <Carousel  controls={false} interval={null}>
                         <Carousel.Item>
-                            <img className="d-block w-100" src="/carousel-2.jpg" alt="First slide" />
+                            <img 
+                                className="d-block w-100" 
+                                src="/carousel-2.jpg" 
+                                alt="First slide"  
+                            />
                             <div className="carousel-caption">
                                 <div className="container py-4">
                                     <div className="row g-5">

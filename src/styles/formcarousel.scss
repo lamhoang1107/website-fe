@@ -1,5 +1,5 @@
 .header-carousel{
-  background-color: aqua;
+  // background-color: aqua;
   
   .carousel {
     .carousel-item {
@@ -19,31 +19,9 @@
         align-items: center;
       }
     }
-    .carousel-indicators {
-      left: 75%;
-      top: 50%;
-      margin-right: 25%;
-      transform: translateY(-50%);
-      flex-direction: column;
 
-      button {
-        display: flex;
-        width: 15px;
-        height: 15px;
-        border: 6px solid var(--bs-white);
-        border-radius: 15px;
-        padding: 0;
-        margin-top: 10px;
-        margin-bottom: 10px;
-        background-color: var(--bs-secondary);
-        opacity: 1;
-        transition: 0.5s;
-      }
-      [data-bs-target].active {
-        background-color: var(--bs-primary);
-      }
-    }
   }
+
   // .carousel-item {
 
   // }
@@ -56,5 +34,29 @@
         display: none;
       }
     }
+  }
+}
+.header-carousel >.carousel > .carousel-indicators {
+  left: 75%;
+  top: 50%;
+  margin-right: 25%;
+  transform: translateY(-50%);
+  flex-direction: column;
+
+  button {
+    display: flex;
+    width: 15px;
+    height: 15px;
+    border: 6px solid var(--bs-white);
+    border-radius: 15px;
+    padding: 0;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    background-color: var(--bs-secondary);
+    opacity: 1;
+    transition: 0.5s;
+  }
+  [data-bs-target].active {
+    background-color: var(--bs-primary);
   }
 }

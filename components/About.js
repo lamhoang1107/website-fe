@@ -2,7 +2,6 @@ import { useContext } from 'react';
 import { GlobalDataContext } from '@/context/GlobalDataContext';
 import { Icon } from "@iconify/react";
 
-
 export default function About() {
   const { globalData } = useContext(GlobalDataContext);
   let _data = globalData.component?.abouts ?? {}
@@ -32,9 +31,9 @@ export default function About() {
 
                 {list_items_1.length > 0 && (
                     <div className="row g-4 d-flex flex-wrap">
-                      {list_items_1.map((v) => {
+                      {list_items_1.map((v,i) => {
                         return (
-                          <div className="col-lg-6 flex-grow-1">
+                          <div className="col-lg-6 flex-grow-1" key={i}>
                             <div className="about-item-inner border p-4">
                               <div className="about-icon mb-4">
                                 {v?.icon !== "" ?
@@ -74,9 +73,9 @@ export default function About() {
                   {list_items_2.length > 0 && (
                     <div className={(_data?.exp_status =="1" || _data?.exp_status == 1) ? `col-lg-6` :  `col-lg-12`}>
                       <div className="rounded">
-                        {list_items_2.map((v) => {
+                        {list_items_2.map((v,i) => {
                           return (
-                            <p className="mb-2">
+                            <p className="mb-2" key={i}>
                               <i className="fa fa-check-circle text-primary me-1" />
                               {v?.value}
                             </p>

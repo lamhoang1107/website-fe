@@ -23,8 +23,8 @@ export default function Service() {
                         </p>
                     </div>
                      <div className="row g-4 d-flex flex-wrap">
-                        {service_items.length > 0 && service_items.map((v) => {
-                            return ( <div className="col-md-6 col-lg-4 wow fadeInUp flex-grow-1" data-wow-delay="0.1s">
+                        {service_items.length > 0 && service_items.map((v,i) => {
+                            return ( <div key={i} className="col-md-6 col-lg-4 wow fadeInUp flex-grow-1" data-wow-delay="0.1s">
                                 <div className='service-item-wraper'>
 
                                     <div className="service-item p-4">
