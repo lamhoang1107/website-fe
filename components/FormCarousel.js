@@ -10,7 +10,7 @@ export default function FormCarousel() {
                         <Carousel.Item>
                             <img 
                                 className="d-block w-100" 
-                                src="/carousel-2.jpg" 
+                                src="public/carousel-2.jpg" 
                                 alt="First slide"  
                             />
                             <div className="carousel-caption">
@@ -148,7 +148,7 @@ export default function FormCarousel() {
                         </Carousel.Item>
                         <Carousel.Item>
                             <img
-                                src="/carousel-1.jpg"
+                                src="public/carousel-2.jpg"
                                 className="img-fluid w-100"
                                 alt="First slide"
                             />
