@@ -29,7 +29,15 @@ export default function Counter() {
                                 key={i}
                             >
                                 <div className="counter-item text-center">
-                                    <div className="counter-item-icon mx-auto">                                            {v?.icon !== "" ?
+                                    <div className="counter-item-icon mx-auto">
+                                        <img
+                                            src={`${process.env.NEXT_PUBLIC_IMAGE_URL}${v.logo}`}
+                                            className="img-fluid"
+                                            style={{ objectFit: "cover" }}
+                                            alt="Image"
+                                            crossOrigin="anonymous"
+                                        />
+                                        {/* {v?.icon !== "" ?
                                         (<Icon
                                             icon={v?.icon}
                                             width="20"
@@ -37,14 +45,14 @@ export default function Counter() {
                                         />) :
                                         (
                                             <i className="fas fa-thumbs-up fa-2x" />
-                                        )}
+                                        )} */}
                                     </div>
-                                    <div className="counter-counting my-3">
+                                    {/* <div className="counter-counting my-3">
                                         <span className="text-white fs-2 fw-bold" data-toggle="counter-up">
-                                            <CountUp end={v?.number} duration={1}  enableScrollSpy={true} />
+                                            <CountUp end={v?.number} duration={1} enableScrollSpy={true} />
                                         </span>
                                         <span className="h1 fw-bold text-white">+</span>
-                                    </div>
+                                    </div> */}
                                     <h4 className="text-white mb-0">{v?.title}</h4>
                                 </div>
                             </div>

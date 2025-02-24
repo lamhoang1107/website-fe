@@ -12,6 +12,7 @@ import Carousel from "../../components/FormCarousel";
 import Feature from "../../components/Feature";
 import About from "../../components/About";
 import Counter from "../../components/Counter";
+import Map from "../../components/Map";
 import Service from "../../components/Service";
 import Review from "../../components/Review";
 
@@ -45,6 +46,9 @@ export default function CatchAllPage() {
         break;
       case "review" :
         _component = <Review key={i}/>
+        break;
+      case "map" :
+        _component = <Map key={i}/>
         break;
     }
     return _component
