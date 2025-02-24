@@ -8,14 +8,14 @@ export function GlobalDataProvider({ children }) {
   const [globalData, setGlobalData] = useState(null);
   const router = useRouter();
 
-    useEffect(() => {
-        fetchData();
-    }, []);
+  useEffect(() => {
+    fetchData();
+  }, []);
 
-    useEffect(() => {
-        const handleRouteChange = () => {
-        console.log('Route changed, re-fetching data...');
-        fetchData(); // Trigger data reload on route change
+  useEffect(() => {
+    const handleRouteChange = () => {
+      console.log('Route changed, re-fetching data...');
+      fetchData(); // Trigger data reload on route change
     };
 
     router.events.on('routeChangeComplete', handleRouteChange);
@@ -30,13 +30,15 @@ export function GlobalDataProvider({ children }) {
     const page_response = await fetch(process.env.NEXT_PUBLIC_API_URL + '/pages').then(results => results.json());
     const component_response = await fetch(process.env.NEXT_PUBLIC_API_URL + '/components').then(results => results.json());
     const review_response = await fetch(process.env.NEXT_PUBLIC_API_URL + '/reviews').then(results => results.json());
-    
+    const question_list = await fetch(process.env.NEXT_PUBLIC_API_URL + '/questions?sort=order').then(results => results.json());
+
     let data = {
       page: page_response.items,
       component: component_response.result,
-      review: review_response.items
+      review: review_response.items,
+      question_list: question_list.items,
     }
-    console.log("🐈 ~ fetchData ~ data:", data)
+    // console.log("🐈 ~ fetchData ~ data:", data)
     setGlobalData(data);
   };
 
