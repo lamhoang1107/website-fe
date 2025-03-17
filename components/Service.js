@@ -1,4 +1,4 @@
-import { useState, useContext, useEffect } from "react";
+import { useState, useContext, useEffect, useRef } from "react";
 import { GlobalDataContext } from '@/context/GlobalDataContext';
 import { Icon } from "@iconify/react";
 
@@ -22,8 +22,23 @@ const ServicesList = () => {
         return () => window.removeEventListener("resize", updateItemsPerRow);
     }, []);
 
-    const toggleExpand = (index) => {
+    const toggleExpand = async (index) => {
         setExpandedIndex(expandedIndex === index ? null : index);
+        let target_id = `#extra-content-${Math.floor(index / itemsPerRow)}-${index}`
+        setTimeout(() => {
+            let target = document.querySelector(target_id);
+            if (target) {
+                  target.scrollIntoView({ behavior: "smooth" ,block: 'start' });
+            } else {
+                //retry after 500ms
+                setTimeout(() => {
+                    let target = document.querySelector(target_id);
+                    if (target) {
+                          target.scrollIntoView({ behavior: "smooth" ,block: 'start' });
+                    }
+                }, 500);
+            }
+        },500);
     };
 
     const chunkArray = (arr, size) => {
@@ -60,7 +75,7 @@ const ServicesList = () => {
                                     onClick={() => toggleExpand(itemIndex)}
                                     style={{ cursor: "pointer" }}
                                 >
-                                    <div className={`service-item-wraper ${expandedIndex === itemIndex ? "expanded" : ""}`}>
+                                    <div className={`service-item-wraper ${(expandedIndex === itemIndex && service_items[expandedIndex]?.html?.length > 0) ? "expanded" : ""}`}>
                                         <div className="service-item p-4">
                                             <div className="service-icon mb-4">
                                                 {v?.icon ? (
@@ -76,7 +91,11 @@ const ServicesList = () => {
                                 </div>
                             );
                         })}
-                        {service_items[expandedIndex]?.html?.length > 0 && (<div className={`col-12 extra-content p-3 ${expandedIndex !== null && Math.floor(expandedIndex / itemsPerRow) === rowIndex ? "show" : ""}`}>
+                        {service_items[expandedIndex]?.html?.length > 0 && (
+                        <div 
+                            id={`extra-content-${rowIndex}-${expandedIndex}`}
+                            className={`extra-content-${expandedIndex} col-12 extra-content p-3 ${expandedIndex !== null && Math.floor(expandedIndex / itemsPerRow) === rowIndex ? "show" : ""}`}
+                        >
                             <div className="ck-content">
                                 <p className="ck-content-html" dangerouslySetInnerHTML={{ __html: service_items[expandedIndex]?.html }} />
                             </div>
