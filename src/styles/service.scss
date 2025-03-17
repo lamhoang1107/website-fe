@@ -5,7 +5,7 @@
 		transition: 0.5s;
 		height: 100%;
 
-		&:hover {
+		&.has-content:hover {
 			background: var(--bs-primary);
 		}
 
@@ -22,7 +22,7 @@
 			background: var(--bs-white);
 			transition: 0.5s;
 	
-			&:hover {
+			&.has-content:hover {
 				border-radius: 60px;
 				background: var(--bs-light);
 			}	
