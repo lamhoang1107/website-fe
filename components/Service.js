@@ -75,8 +75,8 @@ const ServicesList = () => {
                                     onClick={() => toggleExpand(itemIndex)}
                                     style={{ cursor: "pointer" }}
                                 >
-                                    <div className={`service-item-wraper ${(expandedIndex === itemIndex && service_items[expandedIndex]?.html?.length > 0) ? "expanded" : ""}`}>
-                                        <div className="service-item p-4">
+                                    <div className={`service-item-wraper ${service_items[itemIndex]?.html?.length > 0 ? "has-content" : ""} ${(expandedIndex === itemIndex && service_items[itemIndex]?.html?.length > 0) ? "expanded" : ""}`}>
+                                        <div className={`service-item ${service_items[itemIndex]?.html?.length > 0 ? "has-content" : ""} p-4`}>
                                             <div className="service-icon mb-4">
                                                 {v?.icon ? (
                                                     <Icon icon={v.icon} width="20" height="20" />
