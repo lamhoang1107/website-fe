@@ -18,15 +18,15 @@ export default function Counter() {
 
     return (
         <>
-            <div className="container-fluid counter py-5" style={{paddingRight :"0px", paddingLeft: "0px"}}>
-            <div
+            <div className="container-fluid counter py-5" style={{ paddingRight: "0px", paddingLeft: "0px" }}>
+                <div
                     className="text-center mx-auto pb-5 wow fadeInUp"
                     data-wow-delay="0.1s"
                     style={{ maxWidth: 800 }}
                 >
-                    <h1 className="display-5 text-capitalize mb-3">
-                        {_data?.title_part_1 ?? "íuhirfef"} <span className="text-primary">{_data?.title_part_2 ?? "98j"}</span>
-                    </h1>
+                    {(_data?.title_part_1 || _data?.title_part_2) && <h1 className="display-5 text-capitalize mb-3">
+                        {_data?.title_part_1} <span className="text-primary">{_data?.title_part_2}</span>
+                    </h1>}
                     {_data?.description && <p className="mb-0">{_data?.description}</p>}
                 </div>
                 <div className="container-fluid bg-secondary py-5" style={backgroundStyle}>
