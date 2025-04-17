@@ -77,13 +77,20 @@ const ServicesList = () => {
                                 >
                                     <div className={`service-item-wraper ${service_items[itemIndex]?.html?.length > 0 ? "has-content" : ""} ${(expandedIndex === itemIndex && service_items[itemIndex]?.html?.length > 0) ? "expanded" : ""}`}>
                                         <div className={`service-item ${service_items[itemIndex]?.html?.length > 0 ? "has-content" : ""} p-4`}>
-                                            <div className="service-icon mb-4">
-                                                {v?.icon ? (
-                                                    <Icon icon={v.icon} width="20" height="20" />
-                                                ) : (
+                                            {v?.image ? (
+                                                <div className="service-image mb-4">
+                                                    <img
+                                                        src={`${process.env.NEXT_PUBLIC_IMAGE_URL}${v.image}`}
+                                                        className=""
+                                                        alt={i}
+                                                        crossOrigin="anonymous"
+                                                    />
+                                                </div>
+                                            ) : (
+                                                <div className="service-icon mb-4">
                                                     <i className="fa fa-phone-alt fa-2x" />
-                                                )}
-                                            </div>
+                                                </div>
+                                            )}
                                             <h5 className="mb-3">{v?.title}</h5>
                                             <p className="mb-0">{v?.description}</p>
                                         </div>
