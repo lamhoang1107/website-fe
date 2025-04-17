@@ -15,6 +15,12 @@
 			img {
 				max-height: 50px;
 			}
+
+			h1 {
+				display: flex;
+				gap: 10px;
+				align-items: center;
+			}
 			// svg {
 			// 	height: 40px;
 			// 	width: 37.5px;
@@ -99,6 +105,9 @@
 				opacity: 0;
 			}
 		}
+		&.navbar-expand-lg{
+			justify-content: space-between;
+		}
 	}
 }
 @media (max-width: 991px) {
@@ -117,5 +126,19 @@
 				}
 			}
 		}
+	}
+}
+
+.navbar {
+
+	.info {
+		flex-grow: 1;
+		flex-basis: 0;
+		&.end-button {
+			justify-content: flex-end;
+		}
+	}
+	.page {
+		flex-grow: 0;
 	}
 }

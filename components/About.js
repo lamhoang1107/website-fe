@@ -34,18 +34,24 @@ export default function About() {
                       {list_items_1.map((v,i) => {
                         return (
                           <div className="col-lg-6 flex-grow-1" key={i}>
-                            <div className="about-item-inner border p-4">
-                              <div className="about-icon mb-4">
-                                {v?.icon !== "" ?
-                                  (<Icon
-                                    icon={v?.icon}
-                                    width="45"
-                                    height="45"
-                                  />) :
-                                  (
+                            <div className="about-item-inner border p-4">                              
+                              {v?.image ?
+                                (
+                                  <div className="about-image mb-4">
+                                    <img
+                                      src={`${process.env.NEXT_PUBLIC_IMAGE_URL}${v.image}`}
+                                      className=""
+                                      alt={i}
+                                      crossOrigin="anonymous"
+                                    />
+                                    </div>
+                                ) :
+                                (
+                                  <div className="about-icon mb-4">
                                     <i className="fa fa-phone-alt fa-2x" />
-                                  )}
-                              </div>
+                                  </div>
+                                )}
+                              
                               <h5 className="mb-3">{v?.title}</h5>
                               <p className="mb-0">
                                 {v?.description}

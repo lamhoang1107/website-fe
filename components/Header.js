@@ -110,9 +110,9 @@ export default function Header() {
             <div className="container-fluid nav-bar sticky-top px-0 px-lg-4 py-2 py-lg-0">
                 <div className="container">
                     <div className="navbar navbar-expand-lg navbar-light">
-                    <a href="" className="navbar-brand p-0">
+                    <a href="" className="navbar-brand info p-0">
                         <h1 className="display-6 text-primary">
-                        {_data?.icon !== "" ? 
+                        {/* {_data?.icon !== "" ? 
                             (<Icon
                                 icon={_data?.icon}
                                 width="40"
@@ -121,17 +121,30 @@ export default function Header() {
                             />):
                             (
                                 <i className="fas fa-car-alt me-3" />
-                        )}
-                        {_data.title}
+                        )} */}
+                        {_data?.image !== "" &&
+                            // <div className="img-1">
+                            <img
+                                src={`${process.env.NEXT_PUBLIC_IMAGE_URL}${_data.image}`}
+                                className=""
+                                alt="logo"
+                                crossOrigin="anonymous"
+                            />
+                            // </div>
+                        }
+                        
+                        {_data?.title}
                         </h1>
                     </a>
                     <button className="navbar-toggler" type="button" onClick={toggle} data-bs-toggle="collapse" data-bs-target="#navbarCollapse" data-toggle="collapse" data-target="#navbarCollapse">
                         <span className="fa fa-bars"></span>
                     </button>
-                    <div className={`collapse navbar-collapse ${isToggled == true ? "show" : ""}`} id="navbarCollapse">
+                    <div className={`collapse navbar-collapse page ${isToggled == true ? "show" : ""}`} id="navbarCollapse">
                         <div className="navbar-nav mx-auto py-0">
                             {globalData?.page && globalData?.page.map((v,i) => {return showComponent(v,i)})}
                         </div>
+                    </div>
+                    <div className={`collapse navbar-collapse info end-button ${isToggled == true ? "show" : ""}`} id="navbarCollapse">
                         {(_data.btn_status == 1 || _data.btn_status == "1") && <a href="#header-carousel" className="btn btn-primary rounded-pill py-2 px-4">{_data.btn_title ?? "Get Started"}</a>}
                     </div>
                     </div>
