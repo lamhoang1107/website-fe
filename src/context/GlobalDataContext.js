@@ -25,6 +25,15 @@ export function GlobalDataProvider({ children }) {
     };
   }, [router]);
 
+  const applyThemeColors = (colorData) => {
+    if (!colorData) return;
+  
+    const root = document.documentElement;
+    Object.entries(colorData).forEach(([key, value]) => {
+      root.style.setProperty(`--bs-${key}`, value);
+    });
+  };
+
   // Fetch data function
   const fetchData = async () => {
     const page_response = await fetch(process.env.NEXT_PUBLIC_API_URL + '/pages').then(results => results.json());
@@ -33,13 +42,25 @@ export function GlobalDataProvider({ children }) {
     const question_list = await fetch(process.env.NEXT_PUBLIC_API_URL + '/questions?sort=order').then(results => results.json());
 
     let data = {
-      page: page_response.items,
-      component: component_response.result,
-      review: review_response.items,
-      question_list: question_list.items,
+      page: page_response?.items,
+      component: component_response?.result,
+      review: review_response?.items,
+      question_list: question_list?.items,
     }
-    // console.log("🐈 ~ fetchData ~ data:", data)
     setGlobalData(data);
+    if (component_response?.result?.themecolors) {
+      applyThemeColors(component_response.result.themecolors);
+    }
+
+    // let theme_color = {
+    //   primary: "#EA001E",
+    //   secondary: "#1F2E4E",
+    //   dark: "#000C21",
+    //   light: "#F2F2F2",
+    //   text: "#6e7684",
+    // }
+
+    // applyThemeColors(theme_color);
   };
 
   return (
